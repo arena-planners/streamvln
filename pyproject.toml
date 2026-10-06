@@ -1,0 +1,35 @@
+[project]
+name = "arena_planners_streamvln"
+version = "0.0.0"
+description = "StreamVLN planner adapter for arena_planners bridge."
+requires-python = ">=3.10"
+dependencies = [
+    "arena_planners",
+    "torch>=2.14",
+    "transformers==4.45.1",
+    "tokenizers==0.20.3",
+    "numpy",
+    "pillow",
+    "pyyaml",
+]
+
+[tool.uv.sources]
+arena_planners = { git = "https://github.com/arena-planners/arena_planners.git", branch = "jazzy", subdirectory = "arena_planners" }
+
+[tool.setuptools]
+packages = []
+py-modules = []
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["model_streamvln.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["model_streamvln"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
